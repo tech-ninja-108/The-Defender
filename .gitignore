@@ -5,8 +5,6 @@
 *.swo
 
 # Environment Variables / Secrets
-.env
-
 # Python Cache & Virtual Environments
 __pycache__/
 *.pyc
