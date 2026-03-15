@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Visionary Search - Pro Edition</title>
+    <link rel="icon" type="image/jpeg" href="static/favicon.png">
+    <link rel="stylesheet" href="static/css/styles.css">
+</head>
+<body>
+
+    <canvas id="network-canvas"></canvas>
+
+    <div id="state-setup" class="container">
+        <header>
+            <h1 class="header-title">Visionary <span>Search</span></h1>
+            <p class="header-sub">Deep Video Intelligence & Text Extraction</p>
+        </header>
+
+        <div class="glass-panel card">
+            
+            <div class="input-group">
+                <input type="text" id="videoUrl" class="input-box" placeholder="Paste YouTube link here..." oninput="handleUrlInput()">
+                <button class="btn" onclick="analyzeVideo()">
+                    <i class="fa-solid fa-wand-magic-sparkles"></i> Analyze
+                </button>
+            </div>
+            
+            <div class="divider">
+                <span>OR</span>
+            </div>
+            
+            <div id="file-upload-wrapper">
+                <label for="videoFile" class="upload-label">
+                    <i class="fa-solid fa-cloud-arrow-up"></i>
+                    <span id="file-name-display">Upload Video from Browser</span>
+                    <input type="file" id="videoFile" accept="video/*" onchange="updateFileName(this)" hidden>
+                </label>
+            </div>
+            
+            <div class="toggle-container">
+                <label class="switch">
+                    <input type="checkbox" id="ocrMode">
+                    <span class="slider"></span>
+                </label>
+                <span>Enable Deep OCR (Extracts Text from Video Screen)</span>
+            </div>
+        </div>
+    </div>
+
+    <div id="state-process" class="container">
+        <div class="glass-panel progress-card">
+            <div class="spinner" id="main-icon-spinner"></div>
+            <div class="status-icon" id="main-icon">✅</div>
+            <h2 class="progress-title" id="main-status">INITIATING PROCESSING...</h2>
+            <p class="progress-subtitle" id="sub-status">Connecting to server</p>
+
+            <div class="progress-track">
+                <div class="progress-fill" id="progress-bar"></div>
+            </div>
+            
+            <div class="stats-row">
+                <span id="progress-percent">0%</span>
+                <span id="progress-size">0.00 MB / 0.00 MB | ETA: Calculating...</span>
+            </div>
+
+            <div class="steps-container">
+                <div class="step active" id="step-1"><div class="step-spinner"></div> Uploading / Fetching Video</div>
+                <div class="step" id="step-2"><div class="step-spinner"></div> Extracting Audio & Visuals</div>
+                <div class="step" id="step-3"><div class="step-spinner"></div> Running AI Engine (OCR + Speech)</div>
+                <div class="step" id="step-4"><div class="step-spinner"></div> Generating Smart Chapters</div>
+            </div>
+        </div>
+    </div>
+
+    <div id="state-results" class="container">
+        <div class="viewer-panel">
+            <div class="mobile-sticky-top">
+                <button class="top-back-btn" onclick="location.reload()">
+                    <span style="font-size: 1.2rem; margin-bottom: 2px;">←</span> Scan Another Video
+                </button>
+                <div class="video-wrapper">
+                    <iframe id="yt-player" allow="autoplay; encrypted-media" allowfullscreen></iframe>
+                    <video id="local-player" controls></video>
+                </div>
+            </div>
+
+            <div class="info-card">
+                <h3 id="playing-title">Preparing...</h3>
+                <p id="playing-meta">Loading details...</p>
+                
+                <div class="ai-summary">
+                    <div class="ai-label">✨ AI CONTEXT SUMMARY</div>
+                    <p id="summary-text" class="ai-text">Fetching context...</p>
+                </div>
+            </div>
+        </div>
+
+        <div class="topics-panel">
+            <h3 class="topic-header">Chapters</h3>
+            <div id="topicsList"></div>
+        </div>
+    </div>
+
+    <script src="static/js/scripts.js"></script>
+</body>
+</html>
