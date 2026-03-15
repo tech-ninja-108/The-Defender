@@ -392,3 +392,5 @@ async function selectTopic(index) {
         summaryText.innerHTML = "<span style='color: #ff4d4d;'>Failed to load summary.</span>";
     }
 }
+
+
